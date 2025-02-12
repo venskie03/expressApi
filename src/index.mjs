@@ -31,7 +31,7 @@ const fetchFromTmdb = async (endpoint, params = {}) => {
 };
 
 
-app.get('/movies/popular', async (req, res) => {
+app.get('api/v1/movies/popular', async (req, res) => {
     let movies = [];
     for (let page = 1; page <= 5; page++) {
         const data = await fetchFromTmdb('/movie/popular?language=en-US', { page });
@@ -48,7 +48,7 @@ app.get('/movies/popular', async (req, res) => {
     res.json(movies);
 });
 
-app.get('/movies/now_playing', async (req, res) => {
+app.get('api/v1/movies/now_playing', async (req, res) => {
     let movies = [];
     for (let page = 1; page <= 5; page++) {
         const data = await fetchFromTmdb('/movie/now_playing?language=en-US', { page });
@@ -65,7 +65,7 @@ app.get('/movies/now_playing', async (req, res) => {
     res.json(movies);
 });
 
-app.get('/movies/top-rated', async (req, res) => {
+app.get('api/v1/movies/top-rated', async (req, res) => {
     let movies = [];
     for (let page = 1; page <= 5; page++) {
         const data = await fetchFromTmdb('/movie/top_rated?language=en-US', { page });
@@ -82,7 +82,7 @@ app.get('/movies/top-rated', async (req, res) => {
     res.json(movies);
 });
 
-app.get('/movies/genres', async (req, res) => {
+app.get('api/v1/movies/genres', async (req, res) => {
     try {
         const data = await fetchFromTmdb('/genre/movie/list', { language: 'en' });
 
@@ -98,7 +98,7 @@ app.get('/movies/genres', async (req, res) => {
 });
 
 
-app.get('/movies/genres/:genreId', async (req, res) => {
+app.get('api/v1/movies/genres/:genreId', async (req, res) => {
     const { genreId } = req.params;
     let { page = 1 } = req.query; 
     page = Number(page); // Ensure page is a number
@@ -126,7 +126,7 @@ app.get('/movies/genres/:genreId', async (req, res) => {
 });
 
 
-app.get('/movies/search', async (req, res) => {
+app.get('api/v1/movies/search', async (req, res) => {
     const query = req.query.query; 
     if (!query) return res.status(400).json({ error: "Query parameter is required" });
 
@@ -152,7 +152,7 @@ app.get('/movies/search', async (req, res) => {
 
 
 
-app.get('/movies/:id', async (req, res) => {
+app.get('api/v1/movies/:id', async (req, res) => {
     const movieId = req.params.id;
     
     if (!movieId) {
