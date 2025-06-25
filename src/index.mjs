@@ -189,6 +189,10 @@ app.get('/', (request, response) => {
     response.send({ 'created_by': 'KEVIN KYLE GANADOS', 'msg': 'TEST USING EXPRESS.JS' })
 })
 
+app.get('/backend', async (req, res) => {
+    res.send({uri: 'https://vidsrc.xyz/embed/movie'});
+});
+
 
 app.listen(PORT, () => {
     console.log('RUNNING PORT', PORT)
